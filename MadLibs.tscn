@@ -1,0 +1,109 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://MadLibs.gd" type="Script" id=1]
+[ext_resource path="res://gfx/blackboard.jpg" type="Texture" id=2]
+[ext_resource path="res://gfx/Feltpen.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://gfx/blue_button12.png" type="Texture" id=4]
+[ext_resource path="res://gfx/blue_button11.png" type="Texture" id=5]
+[ext_resource path="res://Historia.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+font_data = ExtResource( 3 )
+
+[node name="MadLibs" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+rect_rotation = -0.0529785
+custom_constants/separation = 10
+alignment = 2
+
+[node name="Texto" type="Label" parent="VBoxContainer"]
+margin_right = 984.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 0, 500 )
+custom_fonts/font = SubResource( 1 )
+text = "Bem vindo ao IMadLibs!! Seu jogo de historias fantasticas."
+autowrap = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 510.0
+margin_right = 984.0
+margin_bottom = 568.0
+custom_constants/separation = 10
+alignment = 2
+
+[node name="InputJogador" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+margin_left = 21.0
+margin_right = 871.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 850, 0 )
+custom_fonts/font = SubResource( 2 )
+
+[node name="Botao" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+margin_left = 881.0
+margin_right = 930.0
+margin_bottom = 58.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 940.0
+margin_top = 5.0
+margin_right = 984.0
+margin_bottom = 53.0
+custom_fonts/font = SubResource( 3 )
+text = "Ok"
+
+[node name="Historias" type="Node" parent="."]
+
+[node name="Historia0" type="Node" parent="Historias"]
+script = ExtResource( 6 )
+perguntas = PoolStringArray( "um substantivo", "um adjetivo", "um inteiro positivo", "outro inteiro positivo" )
+texto = "O filme %s %s eh muito bom, apesar de ter %s horas de duracao. Tive que ir no banheiro %s vezes."
+
+[node name="Historia1" type="Node" parent="Historias"]
+script = ExtResource( 6 )
+perguntas = PoolStringArray( "um nome", "um lugar (plural)", "um adjetivo", "outro adjetivo" )
+texto = "O perfume Arome de %s vendido principalmente em %s é muito %s e %s"
+
+[node name="Historia2" type="Node" parent="Historias"]
+script = ExtResource( 6 )
+perguntas = PoolStringArray( "um evento (feminino)", "um nome", "um clima" )
+texto = "A %s foi muito movimentada, até %s apareceu! E olhe que o dia estava %s."
+
+[node name="Historia3" type="Node" parent="Historias"]
+script = ExtResource( 6 )
+perguntas = PoolStringArray( "um nome", "uma comida", "um adjetivo", "um verbo (passado)" )
+texto = "Em um belo dia, %s viajou para as grutas de %s, apenas para descobrir que seu cheiro era %s. Sem mais o que fazer, ele %s."
+
+[node name="Historia4" type="Node" parent="Historias"]
+script = ExtResource( 6 )
+perguntas = PoolStringArray( "um nome", "outro nome", "mais um nome", "um adjetivo", "outro adjetivo", "mais um adjetivo" )
+texto = "Era uma vez 3 porquinhos: %s, %s e %s. Cada um tinha uma característica: $s, %s e %s."
+
+[connection signal="text_entered" from="VBoxContainer/HBoxContainer/InputJogador" to="." method="_on_InputJogador_text_entered"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Botao" to="." method="_on_Botao_pressed"]
